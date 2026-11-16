@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpendWise - Smart Expense Tracker</title>
+<style>
+* { box-sizing: border-box; font-family: Arial, sans-serif; }
+body { margin:0; background:#f4f6f8; color:#222; }
+header { background:#d81b60; color:white; padding:20px; text-align:center; }
+header h1 { margin:0; }
+header p { margin:5px 0 0; }
+.container { max-width:600px; margin:20px auto; padding:0 15px; }
+.card { background:white; padding:20px; border-radius:12px; margin-bottom:15px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+.balance { font-size:32px; font-weight:bold; text-align:center; }
+.summary { display:flex; justify-content:space-between; text-align:center; margin-top:15px; }
+.income { color:green; font-weight:bold; }
+.expense { color:#d81b60; font-weight:bold; }
+input, select { width:100%; padding:12px; margin:8px 0; border:1px solid #ddd; border-radius:8px; }
+button { width:100%; padding:13px; background:#d81b60; color:white; border:none; border-radius:8px; font-size:16px; cursor:pointer; }
+button:hover { background:#b71c56; }
+ul { list-style:none; padding:0; }
+li { display:flex; justify-content:space-between; padding:12px; border-bottom:1px solid #eee; }
+li span:last-child { font-weight:bold; }
+.delete { background:none; color:red; width:auto; padding:0 5px; }
+footer { text-align:center; padding:20px; color:#888; }
+</style>
+</head>
+<body>
+<header>
+<h1>💰 SpendWise</h1>
+<p>Track your money wisely - by Power Learn Project</p>
+</header>
+
+<div class="container">
+<div class="card">
+<p style="text-align:center; margin:0;">Your Balance</p>
+<div class="balance" id="balance">$0.00</div>
+<div class="summary">
+<div><p>Total Income</p><div class="income" id="income">$0.00</div></div>
+<div><p>Total Expense</p><div class="expense" id="expense">$0.00</div></div>
+</div>
+</div>
+
+<div class="card">
+<h3>Add Transaction</h3>
+<input type="text" id="desc" placeholder="Description e.g. Food, Transport, Salary">
+<input type="number" id="amount" placeholder="Amount e.g. 5000">
+<select id="type">
+<option value="income">Income (+)</option>
+<option value="expense">Expense (-)</option>
+</select>
+<select id="category">
+<option>Food</option><option>Transport</option><option>School</option><option>Health</option><option>Salary</option><option>Other</option>
+</select>
+<button onclick="addTransaction()">Add Transaction</button>
+</div>
+
+<div class="card">
+<h3>History</h3>
+<input type="text" id="search" placeholder="Search..." onkeyup="render()">
+<ul id="list"></ul>
+<button onclick="clearAll()" style="background:#333; margin-top:10px;">Clear All</button>
+</div>
+</div>
+
+<footer>SpendWise - Built with HTML, CSS & JavaScript | Deployed on Netlify</footer>
+
+<script>
+let transactions = JSON.parse(localStorage.getItem('spendwise') || '[]');
+function save(){ localStorage.setItem('spendwise', JSON.stringify(transactions)); render(); }
+function addTransaction(){
+  const desc = document.getElementById('desc').value;
+  const amount = parseFloat(document.getElementById('amount').value);
+  const type = document.getElementById('type').value;
+  const category = document.getElementById('category').value;
+  if(!desc || !amount) return alert('Please enter description and amount');
+  transactions.push({desc, amount, type, category, id: Date.now()});
+  document.getElementById('desc').value=''; document.getElementById('amount').value='';
+  save();
+}
+function deleteItem(id){ transactions = transactions.filter(t=>t.id!==id); save(); }
+function clearAll(){ if(confirm('Clear all?')){ transactions=[]; save(); } }
+function render(){
+  const search = document.getElementById('search').value.toLowerCase();
+  const list = document.getElementById('list'); list.innerHTML='';
+  let inc=0, exp=0;
+  transactions.forEach(t=>{
+    if(t.type==='income') inc+=t.amount; else exp+=t.amount;
+    if(t.desc.toLowerCase().includes(search) || t.category.toLowerCase().includes(search)){
+      const li=document.createElement('li');
+      li.innerHTML=`<span>${t.desc} <small>(${t.category})</small></span><span style="color:${t.type==='income'?'green':'#d81b60'}">${t.type==='income'?'+':'-'}$${t.amount} <button class="delete" onclick="deleteItem(${t.id})">x</button></span>`;
+      list.appendChild(li);
+    }
+  });
+  document.getElementById('balance').textContent='$'+(inc-exp).toFixed(2);
+  document.getElementById('income').textContent='$'+inc.toFixed(2);
+  document.getElementById('expense').textContent='$'+exp.toFixed(2);
+}
+render();
+</script>
+</body>
+</html>
