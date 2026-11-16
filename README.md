@@ -23,7 +23,7 @@ Features:
 - Branch: main
 
 ## Live Demo - Netlify
-🔗 **Live Site:** https://fanciful-piroshki-2b0e4d.netlify.app
+🔗 **Live Site:** https://spendwise-serge.netlify.app
 
 > If you changed the name to spendwise-serge, replace the link above with your new link.
 
