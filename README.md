@@ -1,37 +1,46 @@
-# SpendWise - Smart Expense Tracker
 
-## Project Description
-SpendWise is a simple web application that helps users track their income and expenses, view their balance, and manage their daily spending wisely. Users can add transactions, search history, and delete transactions. Data is saved in the browser using LocalStorage.
+# 💰 SpendWise - Track Your Money Wisely
+
+## Description
+SpendWise is a simple personal finance tracker built for the Power Learn Project. It helps users track income and expenses, see their balance in real time, and manage their daily transactions easily.
+
+Features:
+- Add Income / Expense transactions
+- Real-time Balance, Total Income and Total Expense
+- Transaction History with Delete / Clear All
+- Categories: Food, Transport, Salary, etc.
+- Works on mobile and desktop
 
 ## Technologies Used
 - HTML5
 - CSS3
-- JavaScript
-- GitHub
-- Netlify
+- JavaScript (Vanilla JS)
+- Git & GitHub
+- Netlify for Deployment
 
-## GitHub Repository Information
-Repository: https://github.com/YOUR-USERNAME/spendwise
-Branch: main
+## GitHub Info
+- Repository: https://github.com/Serge-ldev-eng/SpendWise-
+- Branch: main
 
-## Live Netlify Website URL
-Live Site: https://YOUR-NAME-spendwise.netlify.app
-(Put your real Netlify link here after deployment)
+## Live Demo - Netlify
+🔗 **Live Site:** https://fanciful-piroshki-2b0e4d.netlify.app
 
-## Deployment Process Summary
-1. Created a public GitHub repository named spendwise
-2. Uploaded index.html and README.md
-3. Connected GitHub repository to Netlify
-4. Deployed the site on Netlify
-5. Changed the Netlify subdomain to a meaningful name
-6. Made a visible change, pushed to GitHub, and verified Netlify auto-updated
+> If you changed the name to spendwise-serge, replace the link above with your new link.
 
-## Challenges Encountered During Deployment
-- I did not have a laptop at first, so I worked from my phone.
-- Low Wi-Fi signal (1 bar) made uploading slow.
-- Learning how to connect GitHub to Netlify for the first time.
+## Deployment Summary
+1. Created organized project with index.html
+2. Created public GitHub repository and pushed code
+3. Deployed to Netlify using Drag & Drop / Dropped files
+4. Renamed site to a meaningful name
+5. Tested live site on Netlify - Balance, Add Transaction and History all work
+
+## Challenges Faced
+- GitHub authorization loop on Netlify - the Authorized page had no button to continue.
+- Confusion between GitHub Pages and Netlify deployment.
+- Finding the correct Netlify live link on mobile.
 
 ## Lessons Learned
-- How to deploy a website using GitHub and Netlify.
-- How Continuous Deployment works: when I push to GitHub, Netlify updates automatically.
-- How to write a good README and organize a project for deployment.
+- How to deploy a static website on Netlify
+- How to connect GitHub to a hosting platform
+- How to write a professional README with live link and deployment summary
+- How to test a live site after deployment
